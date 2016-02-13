@@ -12,26 +12,6 @@ module Raindrops
     str.empty? ? n.to_s : str
   end
 
-  def self.primes_until(n)
-    primes = (2..n).to_a
-
-    primes.each_with_index do |prime, i|
-      next if prime.nil?
-
-      (i + prime...primes.size).step(prime).each do |j|
-        num = primes[j]
-
-        next if num.nil?
-
-        if num % prime == 0
-          primes[j] = nil
-        end
-      end
-    end
-
-    primes.compact
-  end
-
   def self.prime_factors_of(n)
     primes    = primes_until(n)
     factors   = []
@@ -50,5 +30,20 @@ module Raindrops
     end
 
     factors
+  end
+
+  # Sieve of Eratosthenes
+  def self.primes_until(n)
+    ints = (3..n).step(2).to_a
+    p = 3
+
+    loop do
+      (p**2..n).step(2*p).each {|num| ints[num - 2] = nil }
+      break unless p = ints.find {|num| num && num > p }
+    end
+
+    ints.compact!
+    ints.unshift(2) if n > 1
+    ints
   end
 end
