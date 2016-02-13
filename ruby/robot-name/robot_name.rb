@@ -20,7 +20,7 @@ class Robot
     [
       ('A'..'Z').to_a.sample,
       ('A'..'Z').to_a.sample,
-      rand(900) + 100
+      rand(100..900)
     ].join
   end
 
