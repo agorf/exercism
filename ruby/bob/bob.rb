@@ -1,6 +1,6 @@
 class Bob
   def hey(phrase)
-    case phrase.gsub(/[^A-Za-z0-9?]/, '') # clean phrase
+    case phrase.gsub(/[^\w?]/, '') # clean phrase
     when /\A[A-Z0-9]*[A-Z][A-Z0-9]*\??\z/
       'Whoa, chill out!'
     when /\?\z/
