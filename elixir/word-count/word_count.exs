@@ -6,7 +6,7 @@ defmodule Words do
   """
   @spec count(String.t) :: map()
   def count(sentence) do
-    words = Regex.split(~r/[^[:alnum:]-]+/u, String.downcase(sentence), [trim: true])
+    words = Regex.split(~r/[^[:alnum:]-]+/u, String.downcase(sentence), trim: true)
     count(%{}, words)
   end
 
