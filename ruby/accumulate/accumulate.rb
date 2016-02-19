@@ -1,5 +1,5 @@
 class Array
-  def accumulate(&blk)
+  def accumulate
     ret = []
     each {|el| ret << yield(el) }
     ret
