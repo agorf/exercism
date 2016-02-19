@@ -34,16 +34,18 @@ module Raindrops
 
   # Sieve of Eratosthenes
   def self.primes_until(n)
-    ints = (3..n).step(2).to_a
-    p = 3
+    nums = (2..n).to_a
 
-    loop do
-      (p**2..n).step(2*p).each {|num| ints[num - 2] = nil }
-      break unless p = ints.find {|num| num && num > p }
+    nums.each_with_index do |prime, i|
+      next if prime.nil?
+
+      nums[i + 1..-1].each.with_index(i + 1) do |num, j|
+        next if num.nil?
+
+        nums[j] = nil if num % prime == 0
+      end
     end
 
-    ints.compact!
-    ints.unshift(2) if n > 1
-    ints
+    nums.compact
   end
 end
