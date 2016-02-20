@@ -7,20 +7,12 @@ class SumOfMultiples
     @nums = nums
   end
 
-  attr_reader :nums
+  def multiple?(n)
+    @nums.any? {|num| n % num == 0 }
+  end
+  private :multiple?
 
   def to(n)
-    multiples = []
-
-    nums.each do |num|
-      i = 1
-
-      while (multiple = num * i) < n
-        multiples << multiple
-        i += 1
-      end
-    end
-
-    multiples.uniq.reduce(:+) || 0
+    (0...n).select {|num| multiple?(num) }.reduce(:+)
   end
 end
