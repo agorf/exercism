@@ -6,8 +6,8 @@ defmodule Acronym do
   @spec abbreviate(string) :: String.t()
   def abbreviate(string) do
     Regex.scan(~r/[A-Z]|(?<= )[a-z]/, string)
-      |> List.flatten
-      |> Enum.join
-      |> String.upcase
+    |> List.flatten
+    |> Enum.join
+    |> String.upcase
   end
 end

@@ -10,13 +10,13 @@ defmodule Words do
     count(%{}, words)
   end
 
+  defp count(freq, []) do
+    freq
+  end
+
   defp count(freq, [head|tail]) do
     new_count = Map.get(freq, head, 0) + 1
     new_freq = Map.put(freq, head, new_count)
     count(new_freq, tail)
-  end
-
-  defp count(freq, []) do
-    freq
   end
 end
