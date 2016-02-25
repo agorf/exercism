@@ -7,9 +7,10 @@ defmodule ListOps do
   # automatically imported) and so shouldn't be used either.
 
   @spec count(list) :: non_neg_integer
-  def count([]), do: 0
-  def count([_|tail]) do
-    1 + count(tail)
+  def count(list), do: do_count(list, 0)
+  defp do_count([], total), do: total
+  defp do_count([_ | tail], total) do
+    do_count(tail, total + 1)
   end
 
   @spec reverse(list) :: list
@@ -20,18 +21,20 @@ defmodule ListOps do
   end
 
   @spec map(list, (any -> any)) :: list
-  def map([], _), do: []
-  def map([head|tail], f) do
-    [f.(head) | map(tail, f)]
+  def map(list, func), do: do_map(reverse(list), func, [])
+  defp do_map([], _func, result), do: result
+  defp do_map([head|tail], func, result) do
+    do_map(tail, func, [func.(head) | result])
   end
 
   @spec filter(list, (any -> as_boolean(term))) :: list
-  def filter([], _), do: []
-  def filter([head|tail], f) do
-    if f.(head) do
-      [head | filter(tail, f)]
+  def filter(list, func), do: do_filter(reverse(list), func, [])
+  defp do_filter([], _func, result), do: result
+  defp do_filter([head|tail], func, result) do
+    if func.(head) do
+      do_filter(tail, func, [head | result])
     else
-      filter(tail, f)
+      do_filter(tail, func, result)
     end
   end
 
