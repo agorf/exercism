@@ -31,11 +31,11 @@ defmodule ListOps do
   def filter(list, func), do: do_filter(reverse(list), func, [])
   defp do_filter([], _func, result), do: result
   defp do_filter([head|tail], func, result) do
-    if func.(head) do
-      do_filter(tail, func, [head | result])
-    else
-      do_filter(tail, func, result)
-    end
+    do_filter(
+      tail,
+      func,
+      (if func.(head), do: [head | result], else: result)
+    )
   end
 
   @type acc :: any
