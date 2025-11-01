@@ -1,4 +1,4 @@
-My solutions to [exercism.io](https://exercism.io/) problems.
+My solutions to [Exercism](https://exercism.org/) problems.
 
 My profile: <https://exercism.org/profiles/agorf>
 
