@@ -2,7 +2,7 @@ My solutions to [Exercism](https://exercism.org/) problems.
 
 Progress by language track:
 
-- Go: 78/141
+- Go: 79/141
 - Ruby: 17/122 (legacy)
 - Elixir: 6/166 (legacy)
 
